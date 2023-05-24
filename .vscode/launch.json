@@ -1,0 +1,15 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Dart & Flutter",
+            "request": "launch",
+            "type": "dart",
+            "program": "main.dart",
+						"args": ["-u", "https://dev.to/danities316/what-is-currying-in-javascript-and-how-to-use-it-4111","-s", "#main-content", "-e", "#comments,.crayons-layout__comments-display-ad,#bottom-content-read-next,#hide-comments-modal"],
+        }
+    ]
+}

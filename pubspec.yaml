@@ -1,0 +1,8 @@
+name: artex
+environment:
+  sdk: "^3.0.0"
+dependencies:
+  args: ^2.4.1
+  html: ^0.15.3
+  html2md: ^1.2.6
+  http: ^0.13.6
