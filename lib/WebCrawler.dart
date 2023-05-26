@@ -2,7 +2,7 @@ import "package:http/http.dart" as http;
 import "package:html/parser.dart" as DOMParser;
 import "package:html/dom.dart" as DOM;
 
-import "HTMLElementProcessor.dart" show ProcessImages;
+import "HTMLElementProcessor.dart" show ProcessImages, ProcessSVG;
 
 class WebCrawlerResponse {
   late String Title;
@@ -63,6 +63,7 @@ class WebCrawler {
     });
 
     ProcessImages(element, url);
+    ProcessSVG(element);
 
     return WebCrawlerResponse(title, element.outerHtml);
   }
