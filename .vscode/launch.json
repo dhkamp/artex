@@ -9,7 +9,7 @@
             "request": "launch",
             "type": "dart",
             "program": "main.dart",
-						"args": ["-u", "https://dev.to/danities316/what-is-currying-in-javascript-and-how-to-use-it-4111","-s", "#main-content", "-e", "#comments,.crayons-layout__comments-display-ad,#bottom-content-read-next,#hide-comments-modal"],
+						"args": ["-u", "https://www.joshwcomeau.com/javascript/the-const-deception/","-s", "#__next article"],
         }
     ]
 }

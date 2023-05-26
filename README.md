@@ -67,6 +67,19 @@ Required: False
 Position: Named
 ```
 
+## Development
+
+Clone repostiory
+install dependencies with 
+
+```bash
+dart pub get
+```
+
+```bash
+dart compile exe main.dart -o release/artex.exe
+```
+
 ## Roadmap
 
 + Better parameter names

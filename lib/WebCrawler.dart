@@ -2,6 +2,8 @@ import "package:http/http.dart" as http;
 import "package:html/parser.dart" as DOMParser;
 import "package:html/dom.dart" as DOM;
 
+import "HTMLElementProcessor.dart" show ProcessImages;
+
 class WebCrawlerResponse {
   late String Title;
   late String Content;
@@ -59,6 +61,8 @@ class WebCrawler {
     this._ExcludeSelectors.forEach((selector) {
       element!.querySelector(selector)?.remove();
     });
+
+    ProcessImages(element, url);
 
     return WebCrawlerResponse(title, element.outerHtml);
   }
