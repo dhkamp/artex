@@ -76,6 +76,8 @@ install dependencies with
 dart pub get
 ```
 
+### Compile to executable
+
 ```bash
 dart compile exe main.dart -o release/artex.exe
 ```
