@@ -39,3 +39,16 @@ void ProcessSVG(DOM.Element element) {
     svg.replaceWith(img);
   });
 }
+
+DOM.Element ProcessHyperlinks(DOM.Element element, String baseUrl) {
+  DOM.Element clone = element.clone(true);
+  List<DOM.Element> hyperlinkColl = clone.querySelectorAll("a[href]");
+  hyperlinkColl.forEach((hyperlink) {
+    final href = hyperlink.attributes["href"];
+    if (href != null && href.isNotEmpty && !_IsUrlAbsolute(href)) {
+      hyperlink.attributes
+          .update("href", (value) => _GetAbsoluteUrl(baseUrl, value));
+    }
+  });
+  return clone;
+}
