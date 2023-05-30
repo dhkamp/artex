@@ -12,23 +12,29 @@ String _GetAbsoluteUrl(String baseUrl, String relativeUrl) {
   return fullUri.toString();
 }
 
-void ProcessImages(DOM.Element element, String pageUrl) {
+bool _HasAttributeValue(DOM.Element element, String key) {
+  bool hasValue = false;
+  if (element.attributes.containsKey(key)) {
+    final value = element.attributes[key];
+    hasValue = value != null && value.isNotEmpty;
+  }
+
+  return hasValue;
+}
+
+void _ProcessImages(DOM.Element element, String pageUrl) {
   List<DOM.Element> imageColl = element.querySelectorAll("img");
 
-  imageColl.forEach((image) {
-    if (!image.attributes.containsKey("src")) {
-      return;
-    }
-
+  imageColl.where((image) => _HasAttributeValue(image, "src")).forEach((image) {
     final src = image.attributes["src"];
 
-    if (src != null && src.isNotEmpty && !_IsUrlAbsolute(src)) {
+    if (!_IsUrlAbsolute(src!)) {
       image.attributes.update("src", (v) => _GetAbsoluteUrl(pageUrl, v));
     }
   });
 }
 
-void ProcessSVG(DOM.Element element) {
+void _ProcessSVG(DOM.Element element) {
   List<DOM.Element> svgColl = element.querySelectorAll("svg");
   svgColl.forEach((svg) {
     final svgBase64 = base64Encode(utf8.encode(svg.outerHtml));
@@ -40,15 +46,24 @@ void ProcessSVG(DOM.Element element) {
   });
 }
 
-DOM.Element ProcessHyperlinks(DOM.Element element, String baseUrl) {
-  DOM.Element clone = element.clone(true);
-  List<DOM.Element> hyperlinkColl = clone.querySelectorAll("a[href]");
-  hyperlinkColl.forEach((hyperlink) {
+void _ProcessHyperlinks(DOM.Element element, String baseUrl) {
+  List<DOM.Element> hyperlinkColl = element.querySelectorAll("a[href]");
+  hyperlinkColl
+      .where((hyperlink) => _HasAttributeValue(hyperlink, "href"))
+      .forEach((hyperlink) {
     final href = hyperlink.attributes["href"];
-    if (href != null && href.isNotEmpty && !_IsUrlAbsolute(href)) {
-      hyperlink.attributes
-          .update("href", (value) => _GetAbsoluteUrl(baseUrl, value));
+    if (!_IsUrlAbsolute(href!)) {
+      hyperlink.attributes.update("href", (v) => _GetAbsoluteUrl(baseUrl, v));
     }
   });
+}
+
+DOM.Element ProcessDOM(DOM.Element element, String baseUrl) {
+  final DOM.Element clone = element.clone(true);
+
+  _ProcessHyperlinks(clone, baseUrl);
+  _ProcessSVG(clone);
+  _ProcessImages(clone, baseUrl);
+
   return clone;
 }

@@ -87,5 +87,4 @@ dart compile exe main.dart -o release/artex.exe
 + Better parameter names
 + Set output file path and name
 + Include images in export (either download or base64)
-+ Process relative urls - make them absolute so they still work in the export
 + Add frontmatter to the export (including the source and export date)
