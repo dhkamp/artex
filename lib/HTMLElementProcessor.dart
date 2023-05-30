@@ -25,14 +25,10 @@ bool _HasAttributeValue(DOM.Element element, String key) {
 void _ProcessImages(DOM.Element element, String pageUrl) {
   List<DOM.Element> imageColl = element.querySelectorAll("img");
 
-  imageColl.forEach((image) {
-    if (!image.attributes.containsKey("src")) {
-      return;
-    }
-
+  imageColl.where((image) => _HasAttributeValue(image, "src")).forEach((image) {
     final src = image.attributes["src"];
 
-    if (src != null && src.isNotEmpty && !_IsUrlAbsolute(src)) {
+    if (!_IsUrlAbsolute(src!)) {
       image.attributes.update("src", (v) => _GetAbsoluteUrl(pageUrl, v));
     }
   });
@@ -57,8 +53,7 @@ void _ProcessHyperlinks(DOM.Element element, String baseUrl) {
       .forEach((hyperlink) {
     final href = hyperlink.attributes["href"];
     if (!_IsUrlAbsolute(href!)) {
-      hyperlink.attributes
-          .update("href", (value) => _GetAbsoluteUrl(baseUrl, value));
+      hyperlink.attributes.update("href", (v) => _GetAbsoluteUrl(baseUrl, v));
     }
   });
 }
