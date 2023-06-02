@@ -9,7 +9,7 @@
             "request": "launch",
             "type": "dart",
             "program": "main.dart",
-						"args": ["-u", "https://www.joshwcomeau.com/javascript/the-const-deception/","-s", "#__next article"],
+						"args": ["-u", "https://www.freecodecamp.org/news/js-type-coercion-explained-27ba3d9a2839/","-s", ".post-full", "-e", ".social-row,.banner-ad,.learn-cta-row"],
         }
     ]
 }
