@@ -8,6 +8,20 @@ _Artex is also a project for me to learn dart._
 There are currently no dependencies.
 For development dependencies see development #TODO 
 
+## Installation
+
+### Windows
+
+You can add artex to your PATH so that it can be executed from CLI without being in the artex folder.
+To do that execute the following command.
+Note: Removing the `/M`-Flag adds the directory to the USER PAth, not the system PATH.
+
+#TODO
+Do not execute the following script, it will remove the path, needs to be fixed
+```powershell
+setx /M path "%path%;C:\your\path\here\"
+```
+
 ## Syntax
 ```powershell
 artex.exe -u <string> [[-s <string>] [-e <string>]]
