@@ -54,7 +54,6 @@ void Execute(String url, String? selector, List<String>? excludes) async {
   }
 
   final result = await crawler.Crawl(url);
-  print(result);
 
   final file = new File("./${result.Title}.md");
   final content = HTML2MD.convert(result.Content);
